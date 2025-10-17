@@ -17,63 +17,28 @@ Launch the app directly in your browser:
 
 [**Open Sedge Power App**](https://apps.powerapps.com/play/e/default-ea5219a2-9f77-49d9-a241-c7547b01585c/a/813fb2c2-9391-4f11-b20e-d2ed80d68f51?tenantId=ea5219a2-9f77-49d9-a241-c7547b01585c&hint=0b38990b-c7dd-444a-a891-ec8f31fa2461&sourcetime=1760702750545)
 
----
+# Task Master v1 — Project Tracker 
+*Developer:* Khutjo Satekge  
+*Status:* Prototype v1 — Core features working
 
-## Features
+### Components
+- Power Apps frontend (Task Master v1)
+- SharePoint lists (Projects, Tasks)
+- Power Automate flows:
+  - Task Completed Notification
+  - Task Created or Updated Notification
+  - Daily Task Reminder (in progress)
 
-### Power App
-- Create, edit, and track tasks
-- Improved UI/UX for easier navigation
-- Load specific tasks automatically via query parameters (`Param("ID")`)
-- Direct links in notification emails to open tasks in the app
-- [Download Power App `.msapp`](./PowerApps/SedgeApp.msapp) *(optional)*
+### Highlights
+✅ Built using Microsoft Power Platform  
+✅ SharePoint as data source  
+✅ Email notifications integrated  
+✅ Fully editable and responsive Power Apps UI  
 
-### Power Automate Flows
-1. **Task Completed Notification**
-   - Trigger: When a task is modified
-   - Sends an email to the assigned user when a task is marked as **Completed**
-   - [View Flow JSON](./PowerAutomate/TaskCompletedNotification.json)
-
-2. **Task Created or Updated Notification**
-   - Trigger: When a task is created or modified
-   - Conditional logic:
-     - If newly created → send "New Task Assigned" email
-     - If updated → send "Task Updated" email
-   - Corrected expressions:
-     - AssignedTo Email: `triggerOutputs()?['body/AssignedTo']?['Email']`
-     - AssignedTo DisplayName: `triggerOutputs()?['body/AssignedTo']?['DisplayName']`
-   - Optional: Sends notifications only if key fields (Status, Progress, AssignedTo) change
-   - [View Flow JSON](./PowerAutomate/TaskCreatedOrUpdatedNotification.json)
-
----
-
-## Getting Started
-
-### Prerequisites
-- Microsoft Power Apps access
-- Power Automate access
-- SharePoint list with **Tasks** schema
-
-### Setup
-1. Import the **Power Automate flow JSON files** from `/PowerAutomate`.
-2. Import the **Power Apps `.msapp` file** from `/PowerApps` (optional if using Quick Start link).
-3. Publish the app to make it available for users.
-4. Update flow links if needed.
-
----
-
-## Usage
-- Users create or edit tasks in Power Apps.
-- Assigned users receive automated emails for:
-  - New tasks
-  - Task updates
-  - Task completion
-- Email notifications contain a **direct link** to the task in the app.
-
----
-
----
-
+### Next Steps
+- Add Weekly Summary and Approval workflows  
+- Finalize UI polish and validation  
+- Deploy as Managed Solution in production tenant
 ## Version Control
 - Power Apps and Flows maintain **version history** for rollback
 - Always **save and publish** the latest app version before sharing with users
